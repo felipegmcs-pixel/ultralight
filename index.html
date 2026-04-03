@@ -3,31 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ultralight — Proteção UV-A Industrial de Alto Padrão</title>
-
-  <!-- Google Fonts: Inter -->
+  <title>Ultralight — Armadilhas Luminosas desde 1997</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { inter: ['Inter', 'sans-serif'] },
           colors: {
-            navy:    '#0A192F',
-            electric:'#0066FF',
-            cyan:    '#00F0FF',
-            ice:     '#FAFAFA',
-          },
-          backdropBlur: { xs: '2px' },
+            navy: '#0A192F',
+            electric: '#0066FF',
+            cyan: '#00F0FF',
+            ice: '#FAFAFA',
+          }
         }
       }
     }
@@ -36,664 +28,763 @@
   <style>
     * { font-family: 'Inter', sans-serif; }
 
-    /* ── Glow effects ── */
-    .glow-cyan   { box-shadow: 0 0 60px 20px rgba(0,240,255,0.18), 0 0 120px 40px rgba(0,240,255,0.08); }
-    .glow-btn    { box-shadow: 0 0 24px 0 rgba(0,102,255,0.45); }
-    .glow-btn:hover { box-shadow: 0 0 36px 4px rgba(0,102,255,0.65); }
-
-    /* ── Glassmorphism ── */
+    /* Glass header */
     .glass {
-      background: rgba(250,250,250,0.72);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,240,255,0.12);
+      background: rgba(250,250,250,0.80);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,102,255,0.08);
     }
 
-    /* ── Gradient text ── */
-    .gradient-text {
+    /* Gradient text */
+    .grad {
       background: linear-gradient(135deg, #0066FF 0%, #00F0FF 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    /* ── Bento cards ── */
-    .bento-card {
+    /* Glow effects */
+    .glow-blue { box-shadow: 0 0 28px rgba(0,102,255,0.5); }
+    .glow-blue:hover { box-shadow: 0 0 40px rgba(0,102,255,0.7); }
+    .glow-product {
+      background: radial-gradient(ellipse at center,
+        rgba(0,240,255,0.20) 0%,
+        rgba(0,102,255,0.10) 40%,
+        transparent 72%);
+    }
+
+    /* Cards */
+    .card {
       background: #fff;
-      border: 1px solid rgba(0,102,255,0.10);
+      border: 1px solid rgba(0,102,255,0.08);
       border-radius: 20px;
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
-    .bento-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,102,255,0.10);
-      border-color: rgba(0,240,255,0.35);
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 64px rgba(0,102,255,0.10);
+      border-color: rgba(0,240,255,0.30);
     }
 
-    /* ── Segment cards ── */
-    .segment-card {
-      background: linear-gradient(145deg, #0d2444 0%, #0A192F 100%);
-      border: 1px solid rgba(0,240,255,0.12);
+    /* Dark segment cards */
+    .seg-card {
+      background: linear-gradient(145deg,#0e2647,#0A192F);
+      border: 1px solid rgba(0,240,255,0.10);
       border-radius: 20px;
       transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
       overflow: hidden;
       position: relative;
     }
-    .segment-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,240,255,0.06) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
+    .seg-card::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg,rgba(0,240,255,0.07) 0%,transparent 60%);
+      opacity:0; transition:opacity 0.35s;
     }
-    .segment-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 24px 64px rgba(0,240,255,0.15);
-      border-color: rgba(0,240,255,0.40);
-    }
-    .segment-card:hover::before { opacity: 1; }
+    .seg-card:hover { transform:translateY(-6px) scale(1.02); box-shadow:0 24px 64px rgba(0,240,255,0.14); border-color:rgba(0,240,255,0.38); }
+    .seg-card:hover::before { opacity:1; }
 
-    /* ── Social proof logos ── */
-    .logo-track {
-      display: flex;
-      gap: 3rem;
-      animation: slide 22s linear infinite;
-      width: max-content;
-    }
-    @keyframes slide {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    /* Step line */
+    .step-connector { background: linear-gradient(180deg,#0066FF,#00F0FF); }
+
+    /* Fade-up animation */
+    .fu { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease,transform 0.7s ease; }
+    .fu.on { opacity:1; transform:translateY(0); }
+
+    /* Cyan accent line */
+    .acl::after {
+      content:''; display:block; width:52px; height:3px;
+      background:linear-gradient(90deg,#0066FF,#00F0FF);
+      border-radius:99px; margin-top:12px;
     }
 
-    /* ── Input focus ── */
-    .form-input:focus {
-      outline: none;
-      border-color: #00F0FF;
-      box-shadow: 0 0 0 3px rgba(0,240,255,0.15);
+    /* Logo scroll */
+    .logo-row { display:flex; gap:4rem; animation:marquee 24s linear infinite; width:max-content; }
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+    /* UV dot */
+    .uvdot {
+      width:9px;height:9px;border-radius:50%;
+      background:#00F0FF;
+      box-shadow:0 0 10px 3px rgba(0,240,255,0.65);
+      animation:pd 2s ease-in-out infinite;
+    }
+    @keyframes pd { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.45);opacity:0.55} }
+
+    /* UV bar */
+    .uvbar {
+      height:3px;border-radius:99px;
+      background:linear-gradient(90deg,#0066FF,#00F0FF);
+      box-shadow:0 0 8px rgba(0,240,255,0.5);
+      animation:bg 3s ease-in-out infinite alternate;
+    }
+    @keyframes bg { 0%{opacity:0.55} 100%{opacity:1} }
+
+    /* Blog card hover */
+    .blog-card { border-radius:20px; border:1px solid rgba(0,102,255,0.08); background:#fff; transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s; overflow:hidden; }
+    .blog-card:hover { transform:translateY(-5px); box-shadow:0 20px 56px rgba(0,102,255,0.10); border-color:rgba(0,240,255,0.28); }
+
+    /* Step number */
+    .step-num {
+      width:48px;height:48px;border-radius:50%;
+      background:linear-gradient(135deg,#0066FF,#00F0FF);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:18px;color:#fff;
+      flex-shrink:0;
+      box-shadow:0 0 20px rgba(0,102,255,0.40);
     }
 
-    /* ── Scroll fade-in ── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Cyan line accent ── */
-    .cyan-line::after {
-      content: '';
-      display: block;
-      width: 56px;
-      height: 3px;
-      background: linear-gradient(90deg, #0066FF, #00F0FF);
-      border-radius: 99px;
-      margin-top: 12px;
-    }
-
-    /* ── UV placeholder illustration ── */
-    .uv-plate {
-      background: radial-gradient(ellipse at center, rgba(0,240,255,0.22) 0%, rgba(0,102,255,0.10) 45%, transparent 75%);
-      border-radius: 24px;
-      border: 1px solid rgba(0,240,255,0.20);
-      position: relative;
-    }
-    .uv-plate .inner {
-      background: linear-gradient(145deg, #0d2444, #091628);
-      border-radius: 18px;
-      border: 1px solid rgba(0,240,255,0.25);
-    }
-    .uv-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #00F0FF;
-      box-shadow: 0 0 12px 4px rgba(0,240,255,0.7);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%,100% { transform: scale(1); opacity: 1; }
-      50%      { transform: scale(1.4); opacity: 0.6; }
-    }
-    .uv-bar {
-      height: 4px;
-      border-radius: 99px;
-      background: linear-gradient(90deg, #0066FF, #00F0FF);
-      box-shadow: 0 0 10px rgba(0,240,255,0.6);
-      animation: bar-glow 3s ease-in-out infinite alternate;
-    }
-    @keyframes bar-glow {
-      0%   { opacity: 0.6; }
-      100% { opacity: 1; }
-    }
-    .uv-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-    }
+    /* Mobile menu */
+    #mob-menu { display:none; }
+    #mob-menu.open { display:flex; }
   </style>
 </head>
 
-<body class="bg-ice text-navy antialiased">
+<body class="bg-ice text-navy antialiased overflow-x-hidden">
 
-<!-- ═══════════════════════════════════════
-     HEADER — Glassmorphism fixo
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     HEADER
+══════════════════════════════════════ -->
 <header class="glass fixed top-0 left-0 right-0 z-50">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
 
     <!-- Logo -->
-    <div class="flex items-center gap-2 flex-shrink-0">
-      <span class="text-xl font-black tracking-tight">
-        ultra<span class="gradient-text">light</span>
-      </span>
-      <span class="hidden sm:inline-block text-[10px] font-semibold text-electric uppercase tracking-widest border border-electric/30 rounded px-1.5 py-0.5">UV-A</span>
-    </div>
+    <a href="#" class="flex items-center gap-2 flex-shrink-0">
+      <div class="w-8 h-8 rounded-lg bg-electric flex items-center justify-center">
+        <i data-lucide="zap" class="w-4 h-4 text-white"></i>
+      </div>
+      <span class="text-xl font-black tracking-tight">ultra<span class="grad">light</span></span>
+    </a>
 
-    <!-- Nav -->
-    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy/70">
-      <a href="#beneficios"  class="hover:text-electric transition-colors duration-200">Benefícios</a>
-      <a href="#produtos"    class="hover:text-electric transition-colors duration-200">Produtos</a>
-      <a href="#segmentos"   class="hover:text-electric transition-colors duration-200">Segmentos</a>
-      <a href="#normas"      class="hover:text-electric transition-colors duration-200">Conformidade</a>
-      <a href="#contato"     class="hover:text-electric transition-colors duration-200">Contato</a>
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy/65">
+      <a href="#como-funciona" class="hover:text-electric transition-colors">Como Funciona</a>
+      <a href="#segmentos"     class="hover:text-electric transition-colors">Segmentos</a>
+      <a href="#revendedores"  class="hover:text-electric transition-colors">Revendedores</a>
+      <a href="#blog"          class="hover:text-electric transition-colors">Blog</a>
     </nav>
 
-    <!-- CTA -->
-    <a href="#contato"
-       class="glow-btn flex-shrink-0 bg-electric text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-300 hover:bg-blue-700 whitespace-nowrap">
-      Falar com Consultor
-    </a>
+    <div class="flex items-center gap-3">
+      <!-- WhatsApp pill -->
+      <a href="https://wa.me/5514998548580" target="_blank"
+         class="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-navy/60 border border-navy/12 px-3 py-2 rounded-xl hover:border-electric hover:text-electric transition-all duration-200">
+        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+        (14) 99854-8580
+      </a>
+      <a href="#contato"
+         class="glow-blue bg-electric text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all duration-300 hover:bg-blue-700 whitespace-nowrap">
+        Falar com Consultor
+      </a>
+      <!-- Mobile toggle -->
+      <button id="mob-btn" class="md:hidden p-2 rounded-lg hover:bg-navy/5 transition-colors" onclick="toggleMenu()">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mob-menu" class="flex-col gap-1 px-6 pb-4 md:hidden border-t border-navy/6">
+    <a href="#como-funciona" onclick="toggleMenu()" class="block py-2.5 text-sm font-medium text-navy/70 hover:text-electric transition-colors">Como Funciona</a>
+    <a href="#segmentos"     onclick="toggleMenu()" class="block py-2.5 text-sm font-medium text-navy/70 hover:text-electric transition-colors">Segmentos</a>
+    <a href="#revendedores"  onclick="toggleMenu()" class="block py-2.5 text-sm font-medium text-navy/70 hover:text-electric transition-colors">Revendedores</a>
+    <a href="#blog"          onclick="toggleMenu()" class="block py-2.5 text-sm font-medium text-navy/70 hover:text-electric transition-colors">Blog</a>
+    <a href="#contato"       onclick="toggleMenu()" class="block mt-2 text-center bg-electric text-white text-sm font-bold px-5 py-3 rounded-xl">Falar com Consultor</a>
   </div>
 </header>
 
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════════════
      HERO
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <section class="relative pt-32 pb-24 px-6 overflow-hidden">
+  <div class="absolute top-0 right-0 w-[700px] h-[700px] rounded-full bg-electric/5 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan/4 blur-3xl pointer-events-none"></div>
 
-  <!-- Background decoration -->
-  <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-electric/5 blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan/5 blur-3xl pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
 
-  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-
-    <!-- Left: Copy -->
-    <div class="fade-up">
-      <div class="inline-flex items-center gap-2 bg-electric/8 border border-electric/20 text-electric text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+    <!-- Copy -->
+    <div class="fu">
+      <div class="inline-flex items-center gap-2 bg-electric/8 border border-electric/18 text-electric text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
         <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
-        Tecnologia UV-A · Norma ABNT NBR 14165
+        Líderes em Armadilhas Luminosas desde 1997
       </div>
 
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-6">
-        Sua indústria<br/>
-        <span class="gradient-text">protegida</span> de<br/>
-        insetos voadores.
+      <h1 class="text-4xl sm:text-5xl lg:text-[56px] font-black leading-[1.08] tracking-tight mb-6">
+        Por que ter<br/>
+        qualquer armadilha<br/>
+        <span class="grad">se você pode ter<br/>uma Ultralight?</span>
       </h1>
 
-      <p class="text-lg text-navy/60 leading-relaxed mb-8 max-w-md">
-        Monitoramento e eliminação higiênica sem resíduos ou odores. Em conformidade com as Normas de Qualidade e Boas Práticas de Fabricação (BPFs).
+      <p class="text-lg text-navy/58 leading-relaxed mb-8 max-w-lg">
+        Monitoramento e eliminação higiênica de insetos voadores sem resíduos ou odores — em conformidade com as Normas de Qualidade e Boas Práticas de Fabricação (BPFs).
       </p>
 
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 mb-12">
         <a href="#contato"
-           class="glow-btn bg-electric text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:bg-blue-700 flex items-center gap-2">
+           class="glow-blue bg-electric text-white font-bold px-7 py-3.5 rounded-xl transition-all duration-300 hover:bg-blue-700 flex items-center gap-2">
           <i data-lucide="send" class="w-4 h-4"></i>
           Falar com Consultor
         </a>
-        <a href="#produtos"
-           class="border border-navy/15 text-navy font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:border-electric hover:text-electric flex items-center gap-2">
-          <i data-lucide="layout-grid" class="w-4 h-4"></i>
-          Ver Catálogo Completo
+        <a href="#como-funciona"
+           class="border border-navy/14 text-navy font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:border-electric hover:text-electric flex items-center gap-2">
+          <i data-lucide="play-circle" class="w-4 h-4"></i>
+          Como Funciona
         </a>
       </div>
 
-      <!-- Stats row -->
-      <div class="mt-12 flex flex-wrap gap-8 pt-8 border-t border-navy/8">
+      <!-- Stats -->
+      <div class="flex flex-wrap gap-8 pt-8 border-t border-navy/8">
         <div>
-          <div class="text-3xl font-black gradient-text">+500</div>
-          <div class="text-xs font-medium text-navy/50 mt-1">Unidades Instaladas</div>
+          <div class="text-3xl font-black grad">27+</div>
+          <div class="text-xs font-medium text-navy/50 mt-0.5">Anos de Mercado</div>
         </div>
         <div>
-          <div class="text-3xl font-black gradient-text">15+</div>
-          <div class="text-xs font-medium text-navy/50 mt-1">Anos de Mercado</div>
+          <div class="text-3xl font-black grad">+500</div>
+          <div class="text-xs font-medium text-navy/50 mt-0.5">Clientes Ativos</div>
         </div>
         <div>
-          <div class="text-3xl font-black gradient-text">99%</div>
-          <div class="text-xs font-medium text-navy/50 mt-1">Eficiência Captura</div>
+          <div class="text-3xl font-black grad">100%</div>
+          <div class="text-xs font-medium text-navy/50 mt-0.5">Sem Inseticidas</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black grad">BPF</div>
+          <div class="text-xs font-medium text-navy/50 mt-0.5">Conformidade Total</div>
         </div>
       </div>
     </div>
 
-    <!-- Right: Product visual placeholder -->
-    <div class="fade-up flex justify-center">
-      <div class="uv-plate glow-cyan w-full max-w-md aspect-square p-6 flex flex-col items-center justify-center gap-5">
+    <!-- Product visual -->
+    <div class="fu flex justify-center" style="transition-delay:0.15s">
+      <div class="glow-product relative w-full max-w-[420px] aspect-square rounded-3xl flex flex-col items-center justify-center p-8 border border-cyan/15">
 
-        <div class="inner w-full flex-1 flex flex-col items-center justify-center gap-6 p-6">
-          <!-- UV dots grid -->
-          <div class="uv-grid w-full max-w-xs">
-            <div class="uv-dot" style="animation-delay:0s"></div>
-            <div class="uv-dot" style="animation-delay:0.2s"></div>
-            <div class="uv-dot" style="animation-delay:0.4s"></div>
-            <div class="uv-dot" style="animation-delay:0.6s"></div>
-            <div class="uv-dot" style="animation-delay:0.8s"></div>
-            <div class="uv-dot" style="animation-delay:0.3s"></div>
-            <div class="uv-dot" style="animation-delay:0.5s"></div>
-            <div class="uv-dot" style="animation-delay:0.7s"></div>
-            <div class="uv-dot" style="animation-delay:0.9s"></div>
-            <div class="uv-dot" style="animation-delay:1.1s"></div>
-            <div class="uv-dot" style="animation-delay:0.1s"></div>
-            <div class="uv-dot" style="animation-delay:0.4s"></div>
-            <div class="uv-dot" style="animation-delay:0.6s"></div>
-            <div class="uv-dot" style="animation-delay:0.8s"></div>
-            <div class="uv-dot" style="animation-delay:1.0s"></div>
+        <!-- Inner dark box simulating device -->
+        <div class="w-full h-48 rounded-2xl bg-gradient-to-br from-[#0d2444] to-[#091628] border border-cyan/20 flex flex-col items-center justify-center gap-5 p-6 mb-4">
+          <!-- UV dot grid 5x3 -->
+          <div class="grid grid-cols-5 gap-2.5">
+            <div class="uvdot" style="animation-delay:0s"></div>
+            <div class="uvdot" style="animation-delay:0.2s"></div>
+            <div class="uvdot" style="animation-delay:0.4s"></div>
+            <div class="uvdot" style="animation-delay:0.6s"></div>
+            <div class="uvdot" style="animation-delay:0.8s"></div>
+            <div class="uvdot" style="animation-delay:0.3s"></div>
+            <div class="uvdot" style="animation-delay:0.5s"></div>
+            <div class="uvdot" style="animation-delay:0.7s"></div>
+            <div class="uvdot" style="animation-delay:0.9s"></div>
+            <div class="uvdot" style="animation-delay:1.1s"></div>
+            <div class="uvdot" style="animation-delay:0.1s"></div>
+            <div class="uvdot" style="animation-delay:0.45s"></div>
+            <div class="uvdot" style="animation-delay:0.65s"></div>
+            <div class="uvdot" style="animation-delay:0.85s"></div>
+            <div class="uvdot" style="animation-delay:1.0s"></div>
           </div>
-
           <!-- UV bars -->
-          <div class="flex flex-col gap-2 w-full max-w-xs">
-            <div class="uv-bar w-full" style="animation-delay:0s"></div>
-            <div class="uv-bar w-3/4" style="animation-delay:0.5s"></div>
-            <div class="uv-bar w-full" style="animation-delay:1s"></div>
-            <div class="uv-bar w-2/3" style="animation-delay:0.25s"></div>
+          <div class="flex flex-col gap-2 w-full">
+            <div class="uvbar w-full"   style="animation-delay:0s"></div>
+            <div class="uvbar w-3/4"   style="animation-delay:0.5s"></div>
+            <div class="uvbar w-full"  style="animation-delay:1s"></div>
           </div>
-
-          <p class="text-cyan/60 text-xs font-mono tracking-widest text-center">UV-A · 368nm · ULTRALIGHT PRO</p>
         </div>
 
-        <div class="flex gap-3 items-center">
-          <div class="flex items-center gap-1.5 text-cyan text-xs font-semibold">
-            <i data-lucide="zap" class="w-3.5 h-3.5"></i> Ativo
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-1.5 text-xs font-bold" style="color:#00F0FF;">
+            <span class="w-2 h-2 rounded-full bg-cyan animate-pulse"></span> UV-A Ativo
           </div>
-          <div class="w-1 h-1 rounded-full bg-cyan/40"></div>
-          <div class="text-cyan/50 text-xs font-mono">PROTEÇÃO 24/7</div>
+          <span class="text-white/20 text-xs">·</span>
+          <span class="text-white/40 text-xs font-mono">368nm · ULTRALIGHT</span>
+        </div>
+
+        <!-- Floating badge -->
+        <div class="absolute -top-4 -right-4 bg-electric text-white text-[10px] font-black px-3 py-1.5 rounded-xl shadow-lg">
+          Desde 1997
         </div>
       </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     4 BENEFÍCIOS — BENTO GRID
+══════════════════════════════════════ -->
+<section id="beneficios" class="py-6 px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+      <div class="fu card p-6 flex flex-col gap-3" style="transition-delay:0s">
+        <div class="w-11 h-11 rounded-xl bg-electric/10 flex items-center justify-center">
+          <i data-lucide="layout-grid" class="w-5 h-5 text-electric"></i>
+        </div>
+        <h3 class="font-bold text-base">Versatilidade</h3>
+        <p class="text-navy/55 text-sm leading-relaxed">Soluções adaptáveis para indústrias, frigoríficos, restaurantes e estabelecimentos comerciais.</p>
+      </div>
+
+      <div class="fu card p-6 flex flex-col gap-3" style="transition-delay:0.08s">
+        <div class="w-11 h-11 rounded-xl bg-cyan/10 flex items-center justify-center">
+          <i data-lucide="shield-check" class="w-5 h-5" style="color:#00b5c4;"></i>
+        </div>
+        <h3 class="font-bold text-base">Conformidade</h3>
+        <p class="text-navy/55 text-sm leading-relaxed">Atenda às Normas de Qualidade e Boas Práticas de Fabricação (BPFs) com nossas soluções.</p>
+      </div>
+
+      <div class="fu card p-6 flex flex-col gap-3" style="transition-delay:0.16s">
+        <div class="w-11 h-11 rounded-xl bg-purple-500/10 flex items-center justify-center">
+          <i data-lucide="zap" class="w-5 h-5 text-purple-500"></i>
+        </div>
+        <h3 class="font-bold text-base">Alta Eficiência</h3>
+        <p class="text-navy/55 text-sm leading-relaxed">Tecnologia UV-A para atrair e capturar insetos voadores de forma eficaz, 24 horas por dia.</p>
+      </div>
+
+      <div class="fu card p-6 flex flex-col gap-3" style="transition-delay:0.24s">
+        <div class="w-11 h-11 rounded-xl bg-green-500/10 flex items-center justify-center">
+          <i data-lucide="shield" class="w-5 h-5 text-green-500"></i>
+        </div>
+        <h3 class="font-bold text-base">Segurança</h3>
+        <p class="text-navy/55 text-sm leading-relaxed">Captura sem deixar cheiro, fragmentos ou resíduos — protegendo produto e operadores.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     SOCIAL PROOF — Barra de logos
-════════════════════════════════════════ -->
-<section class="py-12 border-y border-navy/6 overflow-hidden bg-white">
-  <p class="text-center text-xs font-semibold tracking-widest text-navy/35 uppercase mb-8">Confiado por líderes da indústria</p>
+<!-- ══════════════════════════════════════
+     INDÚSTRIA PROTEGIDA
+══════════════════════════════════════ -->
+<section class="py-24 px-6">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+    <!-- Visual card left -->
+    <div class="fu order-2 lg:order-1">
+      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-navy to-[#0d2444] p-10 aspect-[4/3] flex flex-col justify-between border border-cyan/12">
+
+        <!-- Top: label -->
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 rounded-full bg-cyan animate-pulse"></div>
+          <span class="text-cyan/70 text-xs font-mono tracking-widest">CONTROLE INTEGRADO DE PRAGAS</span>
+        </div>
+
+        <!-- Middle: big stat -->
+        <div class="text-center py-6">
+          <div class="text-7xl font-black text-white mb-2">0</div>
+          <div class="text-cyan/60 text-sm font-semibold tracking-wide">resíduos · odores · inseticidas</div>
+        </div>
+
+        <!-- Bottom: compliance tags -->
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs font-bold px-3 py-1.5 rounded-full border border-cyan/20 text-cyan/70">BPF</span>
+          <span class="text-xs font-bold px-3 py-1.5 rounded-full border border-electric/25 text-electric/80">ANVISA</span>
+          <span class="text-xs font-bold px-3 py-1.5 rounded-full border border-white/10 text-white/40">ABNT NBR 60335</span>
+          <span class="text-xs font-bold px-3 py-1.5 rounded-full border border-white/10 text-white/40">SIF / MAPA</span>
+        </div>
+
+        <!-- Glow blobs -->
+        <div class="absolute bottom-0 right-0 w-56 h-56 rounded-full bg-cyan/8 blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 left-0 w-40 h-40 rounded-full bg-electric/10 blur-3xl pointer-events-none"></div>
+      </div>
+    </div>
+
+    <!-- Copy right -->
+    <div class="fu order-1 lg:order-2" style="transition-delay:0.1s">
+      <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Sua indústria de alimentos</p>
+      <h2 class="text-3xl sm:text-4xl font-black mb-6 acl leading-tight">
+        Protegida de Insetos Voadores.
+      </h2>
+      <p class="text-navy/60 leading-relaxed mb-5">
+        Conte com as Armadilhas Luminosas Ultralight em locais estratégicos para <strong class="text-navy font-semibold">monitorar e eliminar</strong> moscas e outros insetos voadores de forma higiênica e segura, sem deixar resíduos nem cheiro.
+      </p>
+      <p class="text-navy/60 leading-relaxed mb-8">
+        Produtos essenciais para o <strong class="text-navy font-semibold">Controle Integrado de Pragas</strong>. Entre em conformidade com as normas e boas práticas de higiene e qualidade.
+      </p>
+      <a href="#como-funciona"
+         class="inline-flex items-center gap-2 bg-electric text-white font-bold px-7 py-3.5 rounded-xl transition-all duration-300 hover:bg-blue-700 glow-blue">
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        Conheça nossos produtos
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PARCEIROS — Social Proof
+══════════════════════════════════════ -->
+<section class="py-14 border-y border-navy/6 bg-white overflow-hidden">
+  <p class="text-center text-xs font-semibold tracking-widest text-navy/35 uppercase mb-8">
+    Grandes marcas que confiam na Ultralight
+  </p>
   <div class="relative overflow-hidden">
-    <div class="logo-track">
-      <!-- First set -->
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">JBS</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Marfrig</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">BRF</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Seara</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Ambev</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Cargill</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Tyson Foods</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Minerva Foods</span>
-      <!-- Duplicate for infinite loop -->
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">JBS</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Marfrig</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">BRF</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Seara</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Ambev</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Cargill</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Tyson Foods</span>
-      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Minerva Foods</span>
+    <div class="logo-row">
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Bauducco</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Seara</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Ambev</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Nestlé</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">JBS</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Marfrig</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">BRF</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Cargill</span>
+      <!-- duplicate -->
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Bauducco</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Seara</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Ambev</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Nestlé</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">JBS</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Marfrig</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">BRF</span>
+      <span class="text-2xl font-black text-navy/20 whitespace-nowrap tracking-tight">Cargill</span>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     BENTO GRID — Benefícios
-════════════════════════════════════════ -->
-<section id="beneficios" class="py-24 px-6">
-  <div class="max-w-7xl mx-auto">
+<!-- ══════════════════════════════════════
+     COMO FUNCIONA — 3 passos
+══════════════════════════════════════ -->
+<section id="como-funciona" class="py-24 px-6 bg-navy relative overflow-hidden">
 
-    <div class="mb-14 fade-up">
-      <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Por que Ultralight?</p>
-      <h2 class="text-3xl sm:text-4xl font-black cyan-line">Engenharia pensada<br/>para ambientes críticos.</h2>
-    </div>
-
-    <!-- Bento Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
-
-      <!-- Card 1 — Large (spans 2 cols) -->
-      <div class="bento-card p-8 lg:col-span-2 fade-up">
-        <div class="w-12 h-12 rounded-2xl bg-electric/10 flex items-center justify-center mb-5">
-          <i data-lucide="shield-off" class="w-6 h-6 text-electric"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Zero Contaminação</h3>
-        <p class="text-navy/55 leading-relaxed mb-6">Captura eficaz com UV-A e placas adesivas de alta capacidade, sem estilhaços ou resíduos. Proteção total ao produto, ao operador e ao ambiente de produção.</p>
-        <div class="flex flex-wrap gap-3">
-          <span class="text-xs font-semibold bg-electric/8 text-electric border border-electric/15 px-3 py-1.5 rounded-full">Placa Adesiva</span>
-          <span class="text-xs font-semibold bg-cyan/8 border border-cyan/20 px-3 py-1.5 rounded-full" style="color:#00b5c4;">Sem Estilhaços</span>
-          <span class="text-xs font-semibold bg-navy/5 text-navy/60 border border-navy/10 px-3 py-1.5 rounded-full">UV-A 368nm</span>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="bento-card p-8 fade-up" style="transition-delay:0.1s">
-        <div class="w-12 h-12 rounded-2xl bg-cyan/10 flex items-center justify-center mb-5">
-          <i data-lucide="shield-check" class="w-6 h-6" style="color:#00b5c4;"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Conformidade BPF</h3>
-        <p class="text-navy/55 leading-relaxed">Projetadas para o Controle Integrado de Pragas (CIP) exigido pela vigilância sanitária e pelas Boas Práticas de Fabricação.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bento-card p-8 fade-up" style="transition-delay:0.15s">
-        <div class="w-12 h-12 rounded-2xl bg-green-500/10 flex items-center justify-center mb-5">
-          <i data-lucide="wind" class="w-6 h-6 text-green-500"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-3">100% Inodoro</h3>
-        <p class="text-navy/55 leading-relaxed">Eliminação silenciosa e sem cheiro — sem uso de inseticidas químicos, aerossóis ou qualquer substância que comprometa o produto ou o ambiente.</p>
-      </div>
-
-      <!-- Card 4 — Tall accent -->
-      <div class="bento-card p-8 bg-gradient-to-br from-electric/5 to-cyan/5 fade-up" style="transition-delay:0.2s">
-        <div class="w-12 h-12 rounded-2xl bg-electric flex items-center justify-center mb-5">
-          <i data-lucide="building-2" class="w-6 h-6 text-white"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Versatilidade</h3>
-        <p class="text-navy/55 leading-relaxed">Soluções para frigoríficos, hospitais, restaurantes e supermercados — uma linha completa para cada ambiente e exigência sanitária.</p>
-        <div class="mt-6 flex items-center gap-2 text-electric text-sm font-semibold">
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          Ver catálogo
-        </div>
-      </div>
-
-      <!-- Card 5 — Wide -->
-      <div class="bento-card p-8 sm:col-span-2 fade-up" style="transition-delay:0.25s">
-        <div class="flex flex-col sm:flex-row gap-8">
-          <div class="flex-1">
-            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-5">
-              <i data-lucide="bar-chart-3" class="w-6 h-6 text-purple-500"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Monitoramento Documentado</h3>
-            <p class="text-navy/55 leading-relaxed">Relatórios periódicos de captura para laudos de Controle Integrado de Pragas (PCIP) — documentação pronta para auditorias sanitárias.</p>
-          </div>
-          <div class="flex-1">
-            <div class="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-5">
-              <i data-lucide="wrench" class="w-6 h-6 text-orange-500"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-3">Manutenção Simplificada</h3>
-            <p class="text-navy/55 leading-relaxed">Projeto modular com troca rápida de lâmpadas e placas adesivas — mínimo downtime, máxima disponibilidade operacional.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     PRODUTOS — Catálogo de Linhas
-════════════════════════════════════════ -->
-<section id="produtos" class="py-24 px-6 bg-white">
-  <div class="max-w-7xl mx-auto">
-
-    <div class="mb-14 fade-up">
-      <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Catálogo</p>
-      <h2 class="text-3xl sm:text-4xl font-black cyan-line">Linhas desenvolvidas<br/>para cada ambiente.</h2>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-      <!-- Arandela Flex-45 -->
-      <div class="bento-card p-8 fade-up" style="transition-delay:0s">
-        <div class="w-14 h-14 rounded-2xl bg-electric/10 flex items-center justify-center mb-6">
-          <i data-lucide="lamp-wall-up" class="w-7 h-7 text-electric"></i>
-        </div>
-        <div class="inline-block text-[10px] font-bold tracking-widest uppercase text-electric border border-electric/20 bg-electric/5 px-2.5 py-1 rounded-full mb-4">Linha Parede</div>
-        <h3 class="text-xl font-bold mb-3">Arandela Flex-45</h3>
-        <p class="text-navy/55 leading-relaxed text-sm mb-6">Design elegante com refil adesivo de alta capacidade. Ideal para áreas de atendimento ao cliente, restaurantes e ambientes que exigem discrição estética sem abrir mão da eficiência.</p>
-        <ul class="space-y-2">
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Refil adesivo 45W de alta aderência
-          </li>
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Design slim para montagem em parede
-          </li>
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Cobertura de até 40m²
-          </li>
-        </ul>
-        <a href="#contato" class="mt-6 inline-flex items-center gap-2 text-electric text-sm font-semibold hover:gap-3 transition-all duration-200">
-          Solicitar proposta <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-
-      <!-- Lateral LX-45 -->
-      <div class="bento-card p-8 border-electric/25 bg-gradient-to-br from-electric/3 to-cyan/3 fade-up" style="transition-delay:0.1s">
-        <div class="w-14 h-14 rounded-2xl bg-electric flex items-center justify-center mb-6">
-          <i data-lucide="zap" class="w-7 h-7 text-white"></i>
-        </div>
-        <div class="inline-block text-[10px] font-bold tracking-widest uppercase text-white border border-electric bg-electric px-2.5 py-1 rounded-full mb-4">Mais Vendido</div>
-        <h3 class="text-xl font-bold mb-3">Lateral LX-45</h3>
-        <p class="text-navy/55 leading-relaxed text-sm mb-6">Captura agressiva e alta área de cobertura. Projetado para indústrias e frigoríficos com grande circulação de ar — onde o controle de insetos é crítico para a produção.</p>
-        <ul class="space-y-2">
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Cobertura de até 80m² por unidade
-          </li>
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Dupla lâmpada UV-A de alta potência
-          </li>
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Bandeja coletora removível e lavável
-          </li>
-        </ul>
-        <a href="#contato" class="mt-6 inline-flex items-center gap-2 text-electric text-sm font-semibold hover:gap-3 transition-all duration-200">
-          Solicitar proposta <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-
-      <!-- Inox Premium -->
-      <div class="bento-card p-8 fade-up" style="transition-delay:0.2s">
-        <div class="w-14 h-14 rounded-2xl bg-navy/8 flex items-center justify-center mb-6">
-          <i data-lucide="shield" class="w-7 h-7 text-navy"></i>
-        </div>
-        <div class="inline-block text-[10px] font-bold tracking-widest uppercase text-navy/60 border border-navy/15 bg-navy/5 px-2.5 py-1 rounded-full mb-4">Premium</div>
-        <h3 class="text-xl font-bold mb-3">Inox Premium</h3>
-        <p class="text-navy/55 leading-relaxed text-sm mb-6">Durabilidade extrema para indústrias alimentícias severas. Carcaça em aço inox grau alimentício, resistente a jatos d'água, sanitizantes e ambientes de alta umidade.</p>
-        <ul class="space-y-2">
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Aço inox AISI 304 grau alimentício
-          </li>
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            IP65 — resistente a jatos d'água
-          </li>
-          <li class="flex items-center gap-2 text-navy/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Aprovado SIF / MAPA / FSSC 22000
-          </li>
-        </ul>
-        <a href="#contato" class="mt-6 inline-flex items-center gap-2 text-electric text-sm font-semibold hover:gap-3 transition-all duration-200">
-          Solicitar proposta <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     SEGMENTOS ATENDIDOS
-════════════════════════════════════════ -->
-<section id="segmentos" class="py-24 px-6 bg-navy relative overflow-hidden">
-
-  <!-- Background decoration -->
   <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-electric/8 blur-3xl pointer-events-none"></div>
-  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan/5 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan/6 blur-3xl pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto relative z-10">
 
-    <div class="mb-14 fade-up">
-      <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-3" style="color:#00F0FF;">Segmentos</p>
-      <h2 class="text-3xl sm:text-4xl font-black text-white">Soluções para<br/>quem não pode errar.</h2>
+    <div class="text-center mb-16 fu">
+      <p class="text-sm font-semibold tracking-widest uppercase mb-3" style="color:#00F0FF;">Tecnologia UV-A</p>
+      <h2 class="text-3xl sm:text-4xl font-black text-white">Como as Armadilhas<br/>Luminosas funcionam?</h2>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-10 relative">
 
-      <!-- Frigoríficos -->
-      <div class="segment-card p-8 fade-up" style="transition-delay:0s">
-        <div class="w-14 h-14 rounded-2xl border border-cyan/20 flex items-center justify-center mb-6 bg-white/5">
-          <i data-lucide="snowflake" class="w-7 h-7 text-cyan" style="color:#00F0FF;"></i>
+      <!-- Connector lines (desktop) -->
+      <div class="hidden md:block absolute top-6 left-1/3 right-1/3 h-0.5 bg-gradient-to-r from-electric to-cyan opacity-20 pointer-events-none"></div>
+
+      <!-- Step 1 -->
+      <div class="fu flex flex-col items-start gap-5 p-8 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm" style="transition-delay:0s">
+        <div class="step-num">1</div>
+        <div>
+          <h3 class="text-white font-bold text-lg mb-2">Atração UV-A</h3>
+          <p class="text-white/50 leading-relaxed text-sm">As moscas são atraídas pela luz UV-A emitida pela Armadilha Luminosa Ultralight — a mesma faixa espectral que os insetos enxergam com mais intensidade.</p>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">Frigoríficos</h3>
-        <p class="text-white/50 leading-relaxed text-sm mb-6">
-          Ambientes de abate e processamento de carnes exigem controle rigoroso. Nossos modelos IP65 resistem a limpezas com jatos d'água e sanitizantes sem perda de desempenho.
-        </p>
-        <ul class="space-y-2">
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Carcaça inox grau alimentício
-          </li>
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Aprovado SIF / MAPA
-          </li>
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Alta umidade até 95% RH
-          </li>
-        </ul>
+        <div class="flex items-center gap-2">
+          <div class="uvdot" style="transform:scale(0.8);"></div>
+          <span class="text-xs font-mono" style="color:#00F0FF;">368nm UV-A</span>
+        </div>
       </div>
 
-      <!-- Indústrias Alimentícias -->
-      <div class="segment-card p-8 fade-up" style="transition-delay:0.1s">
-        <div class="w-14 h-14 rounded-2xl border border-electric/25 flex items-center justify-center mb-6 bg-white/5">
-          <i data-lucide="factory" class="w-7 h-7 text-electric"></i>
+      <!-- Step 2 -->
+      <div class="fu flex flex-col items-start gap-5 p-8 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm" style="transition-delay:0.12s">
+        <div class="step-num">2</div>
+        <div>
+          <h3 class="text-white font-bold text-lg mb-2">Captura Higiênica</h3>
+          <p class="text-white/50 leading-relaxed text-sm">Após entrar na armadilha, os insetos ficam presos em uma placa adesiva descartável de alta capacidade — sem espalhar fragmentos, odores ou resíduos.</p>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">Indústrias</h3>
-        <p class="text-white/50 leading-relaxed text-sm mb-6">
-          De alimentos a farmacêuticos — proteja linhas de produção e armazéns contra contaminação por insetos voadores com cobertura de área de até 80m².
-        </p>
-        <ul class="space-y-2">
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Cobertura até 80m² por unidade
-          </li>
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            FSSC 22000 / IFS Food
-          </li>
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Modelos para teto e parede
-          </li>
-        </ul>
+        <div class="flex items-center gap-2 text-electric text-xs font-semibold">
+          <i data-lucide="check-circle" class="w-4 h-4"></i> Zero fragmentos
+        </div>
       </div>
 
-      <!-- Usinas & Granéis -->
-      <div class="segment-card p-8 fade-up" style="transition-delay:0.2s">
-        <div class="w-14 h-14 rounded-2xl border border-cyan/20 flex items-center justify-center mb-6 bg-white/5">
-          <i data-lucide="wheat" class="w-7 h-7" style="color:#00F0FF;"></i>
+      <!-- Step 3 -->
+      <div class="fu flex flex-col items-start gap-5 p-8 rounded-2xl border border-white/8 bg-white/4 backdrop-blur-sm" style="transition-delay:0.24s">
+        <div class="step-num">3</div>
+        <div>
+          <h3 class="text-white font-bold text-lg mb-2">Conformidade Garantida</h3>
+          <p class="text-white/50 leading-relaxed text-sm">As armadilhas Ultralight seguem padrões internacionais de qualidade e estão em conformidade com a norma ABNT NBR 60335-1:2010 e BPFs sanitárias.</p>
         </div>
-        <h3 class="text-xl font-bold text-white mb-3">Usinas & Granéis</h3>
-        <p class="text-white/50 leading-relaxed text-sm mb-6">
-          Armazéns de grãos, açúcar e ração animal são focos naturais de infestação. Projetos com alta densidade de lâmpadas garantem controle efetivo em grandes volumes.
-        </p>
-        <ul class="space-y-2">
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Projeto sob medida para planta
-          </li>
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Laudo técnico incluso
-          </li>
-          <li class="flex items-center gap-2 text-white/60 text-sm">
-            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
-            Alta pressão de captura
-          </li>
-        </ul>
+        <div class="flex items-center gap-2 text-xs font-semibold" style="color:#00F0FF;">
+          <i data-lucide="award" class="w-4 h-4"></i> ABNT NBR 60335-1
+        </div>
       </div>
+
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     CONFORMIDADE — Normas
-════════════════════════════════════════ -->
-<section id="normas" class="py-24 px-6 bg-white">
+<!-- ══════════════════════════════════════
+     GARANTA BOA EXPERIÊNCIA — CTA médio
+══════════════════════════════════════ -->
+<section class="py-24 px-6 bg-white">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+    <!-- Copy -->
+    <div class="fu">
+      <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Para estabelecimentos comerciais</p>
+      <h2 class="text-3xl sm:text-4xl font-black mb-6 acl leading-tight">
+        Garanta uma ótima experiência<br/>para seus clientes.
+      </h2>
+      <p class="text-navy/60 leading-relaxed mb-6">
+        Moscas carregam diversos patógenos nocivos que podem contaminar alimentos no seu estabelecimento. Com as Armadilhas Luminosas Ultralight, você protege seus clientes de doenças, evita incômodos e preserva a imagem do seu negócio.
+      </p>
+      <div class="flex flex-wrap gap-3 mb-8">
+        <span class="text-xs font-semibold bg-electric/8 text-electric border border-electric/15 px-3 py-1.5 rounded-full">Restaurantes</span>
+        <span class="text-xs font-semibold bg-navy/5 text-navy/60 border border-navy/10 px-3 py-1.5 rounded-full">Hotéis</span>
+        <span class="text-xs font-semibold bg-navy/5 text-navy/60 border border-navy/10 px-3 py-1.5 rounded-full">Padarias</span>
+        <span class="text-xs font-semibold bg-navy/5 text-navy/60 border border-navy/10 px-3 py-1.5 rounded-full">Supermercados</span>
+      </div>
+      <a href="#contato"
+         class="inline-flex items-center gap-2 bg-electric text-white font-bold px-7 py-3.5 rounded-xl glow-blue transition-all duration-300 hover:bg-blue-700">
+        <i data-lucide="send" class="w-4 h-4"></i>
+        Saiba como funciona
+      </a>
+    </div>
+
+    <!-- Stats grid -->
+    <div class="fu grid grid-cols-2 gap-4" style="transition-delay:0.1s">
+      <div class="card p-7 flex flex-col gap-3">
+        <i data-lucide="users" class="w-8 h-8 text-electric"></i>
+        <div class="text-4xl font-black grad">500+</div>
+        <div class="text-sm text-navy/55 font-medium">Clientes satisfeitos em todo o Brasil</div>
+      </div>
+      <div class="card p-7 flex flex-col gap-3 mt-6">
+        <i data-lucide="clock" class="w-8 h-8" style="color:#00b5c4;"></i>
+        <div class="text-4xl font-black grad">24/7</div>
+        <div class="text-sm text-navy/55 font-medium">Proteção contínua sem interrupções</div>
+      </div>
+      <div class="card p-7 flex flex-col gap-3">
+        <i data-lucide="leaf" class="w-8 h-8 text-green-500"></i>
+        <div class="text-4xl font-black grad">0</div>
+        <div class="text-sm text-navy/55 font-medium">Inseticidas, odores ou resíduos</div>
+      </div>
+      <div class="card p-7 flex flex-col gap-3 mt-6">
+        <i data-lucide="calendar" class="w-8 h-8 text-orange-500"></i>
+        <div class="text-4xl font-black grad">1997</div>
+        <div class="text-sm text-navy/55 font-medium">Ano de fundação — 27 anos de expertise</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     SEGMENTOS
+══════════════════════════════════════ -->
+<section id="segmentos" class="py-24 px-6 bg-ice">
   <div class="max-w-7xl mx-auto">
 
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <div class="text-center mb-14 fu">
+      <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Segmentos</p>
+      <h2 class="text-3xl sm:text-4xl font-black">Soluções para diversos segmentos.</h2>
+      <p class="text-navy/55 mt-3 max-w-xl mx-auto">Nossas Armadilhas Luminosas atendem às necessidades de uma ampla gama de setores com soluções personalizadas.</p>
+    </div>
 
-      <!-- Left: Copy -->
-      <div class="fade-up">
-        <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Conformidade</p>
-        <h2 class="text-3xl sm:text-4xl font-black mb-6 cyan-line">Passe em qualquer<br/>auditoria com confiança.</h2>
-        <p class="text-navy/60 leading-relaxed mb-8">
-          Nossas armadilhas são projetadas para atender integralmente às exigências de órgãos reguladores brasileiros e internacionais. A documentação técnica vem com cada equipamento.
-        </p>
-        <div class="space-y-4">
-          <div class="flex items-start gap-4 p-5 rounded-2xl border border-navy/8 hover:border-electric/20 transition-colors duration-300">
-            <div class="w-10 h-10 rounded-xl bg-electric/10 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="file-check" class="w-5 h-5 text-electric"></i>
-            </div>
-            <div>
-              <div class="font-bold text-sm mb-1">ABNT NBR 14165</div>
-              <div class="text-navy/55 text-sm">Norma brasileira para armadilhas luminosas — atendida em 100% dos modelos Ultralight.</div>
-            </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+      <div class="seg-card p-7 fu" style="transition-delay:0s">
+        <div class="w-12 h-12 rounded-xl border border-cyan/20 bg-white/5 flex items-center justify-center mb-5">
+          <i data-lucide="hotel" class="w-6 h-6" style="color:#00F0FF;"></i>
+        </div>
+        <h3 class="text-white font-bold text-lg mb-2">Hotéis</h3>
+        <p class="text-white/45 text-sm leading-relaxed">Proteja hóspedes e ambientes de refeição com equipamentos silenciosos e de design discreto.</p>
+      </div>
+
+      <div class="seg-card p-7 fu" style="transition-delay:0.08s">
+        <div class="w-12 h-12 rounded-xl border border-electric/25 bg-white/5 flex items-center justify-center mb-5">
+          <i data-lucide="chef-hat" class="w-6 h-6 text-electric"></i>
+        </div>
+        <h3 class="text-white font-bold text-lg mb-2">Panificações</h3>
+        <p class="text-white/45 text-sm leading-relaxed">Ambientes quentes e com exposição de alimentos exigem controle rigoroso — nossas soluções são ideais.</p>
+      </div>
+
+      <div class="seg-card p-7 fu" style="transition-delay:0.16s">
+        <div class="w-12 h-12 rounded-xl border border-cyan/20 bg-white/5 flex items-center justify-center mb-5">
+          <i data-lucide="utensils" class="w-6 h-6" style="color:#00F0FF;"></i>
+        </div>
+        <h3 class="text-white font-bold text-lg mb-2">Restaurantes</h3>
+        <p class="text-white/45 text-sm leading-relaxed">Mantenha a qualidade e a conformidade sanitária sem interferir na experiência do cliente.</p>
+      </div>
+
+      <div class="seg-card p-7 fu" style="transition-delay:0.24s">
+        <div class="w-12 h-12 rounded-xl border border-electric/25 bg-white/5 flex items-center justify-center mb-5">
+          <i data-lucide="shopping-cart" class="w-6 h-6 text-electric"></i>
+        </div>
+        <h3 class="text-white font-bold text-lg mb-2">Supermercados</h3>
+        <p class="text-white/45 text-sm leading-relaxed">Proteja áreas de açougue, hortifrúti e padaria com soluções de alta capacidade e fácil manutenção.</p>
+      </div>
+
+      <div class="seg-card p-7 fu" style="transition-delay:0.08s">
+        <div class="w-12 h-12 rounded-xl border border-cyan/20 bg-white/5 flex items-center justify-center mb-5">
+          <i data-lucide="factory" class="w-6 h-6" style="color:#00F0FF;"></i>
+        </div>
+        <h3 class="text-white font-bold text-lg mb-2">Indústrias</h3>
+        <p class="text-white/45 text-sm leading-relaxed">Linhas de produção alimentícia e farmacêutica com cobertura de até 80m² por equipamento.</p>
+      </div>
+
+      <div class="seg-card p-7 fu" style="transition-delay:0.16s">
+        <div class="w-12 h-12 rounded-xl border border-electric/25 bg-white/5 flex items-center justify-center mb-5">
+          <i data-lucide="snowflake" class="w-6 h-6 text-electric"></i>
+        </div>
+        <h3 class="text-white font-bold text-lg mb-2">Frigoríficos</h3>
+        <p class="text-white/45 text-sm leading-relaxed">Modelos IP65 resistentes a jatos d'água e sanitizantes para abatedouros e câmaras frias.</p>
+      </div>
+
+      <div class="seg-card p-7 fu" style="transition-delay:0.24s">
+        <div class="w-12 h-12 rounded-xl border border-cyan/20 bg-white/5 flex items-center justify-center mb-5">
+          <i data-lucide="building-2" class="w-6 h-6" style="color:#00F0FF;"></i>
+        </div>
+        <h3 class="text-white font-bold text-lg mb-2">Hospitais</h3>
+        <p class="text-white/45 text-sm leading-relaxed">Ambientes de saúde requerem controle de vetores sem produtos químicos — UV-A é a solução ideal.</p>
+      </div>
+
+      <div class="seg-card p-7 fu" style="transition-delay:0.32s">
+        <div class="w-12 h-12 rounded-xl border border-electric/25 bg-white/5 flex items-center justify-center mb-5">
+          <i data-lucide="wheat" class="w-6 h-6 text-electric"></i>
+        </div>
+        <h3 class="text-white font-bold text-lg mb-2">Usinas & Granéis</h3>
+        <p class="text-white/45 text-sm leading-relaxed">Armazéns de grãos, açúcar e ração com projetos de alta densidade e laudos técnicos inclusos.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     REVENDEDORES & CONTROLADORES
+══════════════════════════════════════ -->
+<section id="revendedores" class="py-24 px-6 bg-white">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+    <!-- Visual -->
+    <div class="fu">
+      <div class="rounded-3xl bg-gradient-to-br from-electric/8 to-cyan/5 border border-electric/15 p-10 flex flex-col gap-8">
+        <div class="w-16 h-16 rounded-2xl bg-electric flex items-center justify-center">
+          <i data-lucide="trending-up" class="w-8 h-8 text-white"></i>
+        </div>
+        <div>
+          <div class="text-5xl font-black grad mb-2">+30%</div>
+          <div class="text-navy/55 text-sm font-medium">Aumento médio de faturamento<br/>relatado por revendedores parceiros</div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 pt-4 border-t border-navy/8">
+          <div class="card p-5">
+            <div class="text-2xl font-black grad mb-1">Kit</div>
+            <div class="text-navy/55 text-xs">Kits promocionais disponíveis</div>
           </div>
-          <div class="flex items-start gap-4 p-5 rounded-2xl border border-navy/8 hover:border-electric/20 transition-colors duration-300">
-            <div class="w-10 h-10 rounded-xl bg-electric/10 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="award" class="w-5 h-5 text-electric"></i>
-            </div>
-            <div>
-              <div class="font-bold text-sm mb-1">FSSC 22000 / IFS Food</div>
-              <div class="text-navy/55 text-sm">Documentação e laudos compatíveis com as principais certificações de segurança alimentar.</div>
-            </div>
-          </div>
-          <div class="flex items-start gap-4 p-5 rounded-2xl border border-navy/8 hover:border-electric/20 transition-colors duration-300">
-            <div class="w-10 h-10 rounded-xl bg-electric/10 flex items-center justify-center flex-shrink-0">
-              <i data-lucide="clipboard-list" class="w-5 h-5 text-electric"></i>
-            </div>
-            <div>
-              <div class="font-bold text-sm mb-1">SIF / MAPA</div>
-              <div class="text-navy/55 text-sm">Aprovado para uso em estabelecimentos registrados no Ministério da Agricultura.</div>
-            </div>
+          <div class="card p-5">
+            <div class="text-2xl font-black grad mb-1">B2B</div>
+            <div class="text-navy/55 text-xs">Condições especiais para revendas</div>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Right: Visual stats -->
-      <div class="fade-up grid grid-cols-2 gap-5">
-        <div class="bento-card p-7 flex flex-col items-start gap-3">
-          <i data-lucide="target" class="w-8 h-8 text-electric"></i>
-          <div class="text-4xl font-black gradient-text">99%</div>
-          <div class="text-sm text-navy/55 font-medium">Eficiência de captura documentada</div>
+    <!-- Copy -->
+    <div class="fu" style="transition-delay:0.1s">
+      <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Parceria Comercial</p>
+      <h2 class="text-3xl sm:text-4xl font-black mb-6 acl leading-tight">
+        Controladores de Pragas<br/>e Revendedores.
+      </h2>
+      <p class="text-navy/60 leading-relaxed mb-5">
+        Aumente seu faturamento e fidelize seus clientes com nossas linhas de armadilhas mata-mosca. Confira nossas condições especiais e kits de produtos promocionais para controle de insetos voadores e roedores.
+      </p>
+      <p class="text-navy/60 leading-relaxed mb-8">
+        Seja um revendedor Ultralight e ofereça soluções de alta qualidade com suporte técnico completo e documentação para laudos.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contato"
+           class="inline-flex items-center gap-2 bg-electric text-white font-bold px-7 py-3.5 rounded-xl glow-blue transition-all duration-300 hover:bg-blue-700">
+          <i data-lucide="handshake" class="w-4 h-4"></i>
+          Quero ser revendedor
+        </a>
+        <a href="#contato"
+           class="inline-flex items-center gap-2 border border-navy/14 text-navy font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:border-electric hover:text-electric">
+          Saiba mais
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONSULTORIA ESPECIALIZADA
+══════════════════════════════════════ -->
+<section class="py-24 px-6 bg-navy relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 right-1/4 w-72 h-72 rounded-full bg-electric/10 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/4 w-64 h-64 rounded-full bg-cyan/6 blur-3xl"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto text-center relative z-10 fu">
+    <p class="text-sm font-semibold tracking-widest uppercase mb-4" style="color:#00F0FF;">Consultoria Especializada</p>
+    <h2 class="text-3xl sm:text-5xl font-black text-white mb-5 leading-tight">
+      Analisamos sua planta<br/>e indicamos a solução<br/><span class="grad">certa para você.</span>
+    </h2>
+    <p class="text-white/50 text-lg max-w-2xl mx-auto mb-10">
+      Nossa equipe visita suas instalações, identifica pontos críticos e indica as armadilhas mais recomendadas para que sua produção esteja em conformidade com as normas e boas práticas de qualidade.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#contato"
+         class="glow-blue bg-electric text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 hover:bg-blue-700 flex items-center gap-2 text-lg">
+        <i data-lucide="phone" class="w-5 h-5"></i>
+        Fale conosco
+      </a>
+      <a href="https://wa.me/5514998548580" target="_blank"
+         class="border border-white/15 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 hover:border-cyan/40 hover:text-cyan flex items-center gap-2 text-lg" style="--tw-text-opacity:1;">
+        <i data-lucide="message-circle" class="w-5 h-5"></i>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     BLOG — Publicações em destaque
+══════════════════════════════════════ -->
+<section id="blog" class="py-24 px-6 bg-ice">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="mb-14 fu">
+      <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Conteúdo</p>
+      <h2 class="text-3xl sm:text-4xl font-black acl">Publicações em destaque.</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="blog-card fu" style="transition-delay:0s">
+        <div class="h-40 bg-gradient-to-br from-navy to-[#0d2444] flex items-center justify-center p-6 relative overflow-hidden">
+          <div class="absolute inset-0 bg-electric/10"></div>
+          <i data-lucide="alert-triangle" class="w-12 h-12 text-yellow-400 relative z-10"></i>
         </div>
-        <div class="bento-card p-7 flex flex-col items-start gap-3 mt-8">
-          <i data-lucide="clock" class="w-8 h-8" style="color:#00b5c4;"></i>
-          <div class="text-4xl font-black gradient-text">24/7</div>
-          <div class="text-sm text-navy/55 font-medium">Proteção contínua sem paradas</div>
+        <div class="p-6">
+          <p class="text-electric text-xs font-semibold uppercase tracking-wide mb-2">Saúde & Segurança</p>
+          <h3 class="font-bold text-navy mb-3 leading-snug">Por que as moscas são uma ameaça na indústria de alimentos e como combatê-las?</h3>
+          <p class="text-navy/55 text-sm leading-relaxed mb-4">A presença de moscas em áreas de produção alimentícia não é apenas um inconveniente — é uma séria violação das normas sanitárias...</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-electric text-sm font-semibold hover:gap-3 transition-all duration-200">
+            Leia mais <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
         </div>
-        <div class="bento-card p-7 flex flex-col items-start gap-3">
-          <i data-lucide="leaf" class="w-8 h-8 text-green-500"></i>
-          <div class="text-4xl font-black gradient-text">0</div>
-          <div class="text-sm text-navy/55 font-medium">Pesticidas ou resíduos químicos</div>
+      </div>
+
+      <div class="blog-card fu" style="transition-delay:0.1s">
+        <div class="h-40 bg-gradient-to-br from-navy to-[#0d2444] flex items-center justify-center p-6 relative overflow-hidden">
+          <div class="absolute inset-0 bg-cyan/8"></div>
+          <i data-lucide="wine" class="w-12 h-12 text-electric relative z-10"></i>
         </div>
-        <div class="bento-card p-7 flex flex-col items-start gap-3 mt-8">
-          <i data-lucide="shield" class="w-8 h-8 text-purple-500"></i>
-          <div class="text-4xl font-black gradient-text">IP65</div>
-          <div class="text-sm text-navy/55 font-medium">Proteção contra jatos d'água</div>
+        <div class="p-6">
+          <p class="text-electric text-xs font-semibold uppercase tracking-wide mb-2">Indústria de Bebidas</p>
+          <h3 class="font-bold text-navy mb-3 leading-snug">Proteja a qualidade de suas bebidas: evite a contaminação por moscas!</h3>
+          <p class="text-navy/55 text-sm leading-relaxed mb-4">Se você trabalha na indústria de bebidas, sabe que garantir a qualidade dos produtos é essencial. Mas você sabia que as moscas podem ser uma ameaça séria?</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-electric text-sm font-semibold hover:gap-3 transition-all duration-200">
+            Leia mais <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="blog-card fu" style="transition-delay:0.2s">
+        <div class="h-40 bg-gradient-to-br from-navy to-[#0d2444] flex items-center justify-center p-6 relative overflow-hidden">
+          <div class="absolute inset-0 bg-purple-500/8"></div>
+          <i data-lucide="package" class="w-12 h-12 text-purple-400 relative z-10"></i>
+        </div>
+        <div class="p-6">
+          <p class="text-electric text-xs font-semibold uppercase tracking-wide mb-2">Embalagens</p>
+          <h3 class="font-bold text-navy mb-3 leading-snug">Como evitar que insetos voadores comprometam a qualidade das suas embalagens e do produto final</h3>
+          <p class="text-navy/55 text-sm leading-relaxed mb-4">Manter a qualidade das embalagens e proteger o produto final contra contaminações são prioridades absolutas na indústria...</p>
+          <a href="#" class="inline-flex items-center gap-1.5 text-electric text-sm font-semibold hover:gap-3 transition-all duration-200">
+            Leia mais <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
         </div>
       </div>
 
@@ -702,147 +793,203 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     CTA FINAL + FORMULÁRIO
-════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     FORMULÁRIO DE CONTATO
+══════════════════════════════════════ -->
 <section id="contato" class="py-24 px-6 bg-navy relative overflow-hidden">
-
   <div class="absolute inset-0 pointer-events-none">
     <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-electric/10 blur-3xl"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan/8 blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan/6 blur-3xl"></div>
   </div>
 
   <div class="max-w-4xl mx-auto relative z-10">
-
-    <div class="text-center mb-14 fade-up">
-      <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-4" style="color:#00F0FF;">Próximo passo</p>
-      <h2 class="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
-        Pronto para <span class="gradient-text">blindar</span><br/>sua indústria?
+    <div class="text-center mb-12 fu">
+      <p class="text-sm font-semibold tracking-widest uppercase mb-4" style="color:#00F0FF;">Entre em contato</p>
+      <h2 class="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
+        Pronto para <span class="grad">blindar</span><br/>sua indústria?
       </h2>
       <p class="text-white/50 text-lg max-w-xl mx-auto">
-        Fale com um consultor especialista e receba um projeto técnico personalizado para sua planta — sem custo e sem compromisso.
+        Fale com um consultor especialista e receba um projeto técnico personalizado — sem custo e sem compromisso.
       </p>
     </div>
 
-    <!-- Form card -->
-    <div class="fade-up bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-8 sm:p-10">
+    <div class="fu bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-8 sm:p-10">
       <form class="space-y-5" onsubmit="handleSubmit(event)">
-
         <div class="grid sm:grid-cols-2 gap-5">
           <div>
-            <label class="block text-white/70 text-sm font-medium mb-2">Nome completo</label>
-            <input type="text" placeholder="João Silva"
-                   class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+            <label class="block text-white/65 text-sm font-medium mb-2">Nome completo</label>
+            <input type="text" placeholder="João Silva" required
+                   class="w-full bg-white/8 border border-white/12 text-white placeholder-white/25 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan/50 focus:ring-2 focus:ring-cyan/15 transition-all duration-200" />
           </div>
           <div>
-            <label class="block text-white/70 text-sm font-medium mb-2">Empresa</label>
-            <input type="text" placeholder="Sua Indústria Ltda."
-                   class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+            <label class="block text-white/65 text-sm font-medium mb-2">Empresa</label>
+            <input type="text" placeholder="Sua Indústria Ltda." required
+                   class="w-full bg-white/8 border border-white/12 text-white placeholder-white/25 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan/50 focus:ring-2 focus:ring-cyan/15 transition-all duration-200" />
           </div>
         </div>
-
         <div class="grid sm:grid-cols-2 gap-5">
           <div>
-            <label class="block text-white/70 text-sm font-medium mb-2">E-mail corporativo</label>
-            <input type="email" placeholder="joao@empresa.com.br"
-                   class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+            <label class="block text-white/65 text-sm font-medium mb-2">E-mail</label>
+            <input type="email" placeholder="joao@empresa.com.br" required
+                   class="w-full bg-white/8 border border-white/12 text-white placeholder-white/25 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan/50 focus:ring-2 focus:ring-cyan/15 transition-all duration-200" />
           </div>
           <div>
-            <label class="block text-white/70 text-sm font-medium mb-2">Telefone / WhatsApp</label>
-            <input type="tel" placeholder="(11) 99999-9999"
-                   class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+            <label class="block text-white/65 text-sm font-medium mb-2">Telefone / WhatsApp</label>
+            <input type="tel" placeholder="(14) 99999-9999"
+                   class="w-full bg-white/8 border border-white/12 text-white placeholder-white/25 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan/50 focus:ring-2 focus:ring-cyan/15 transition-all duration-200" />
           </div>
         </div>
-
         <div>
-          <label class="block text-white/70 text-sm font-medium mb-2">Segmento</label>
-          <select class="form-input w-full bg-white/8 border border-white/15 text-white/70 rounded-xl px-4 py-3 text-sm transition-all duration-200 appearance-none"
-                  style="background-color: rgba(10,25,47,0.8);">
+          <label class="block text-white/65 text-sm font-medium mb-2">Segmento</label>
+          <select required class="w-full border border-white/12 text-white/65 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan/50 focus:ring-2 focus:ring-cyan/15 transition-all duration-200 appearance-none"
+                  style="background-color:rgba(10,25,47,0.85);">
             <option value="" disabled selected>Selecione seu segmento</option>
-            <option value="frigorifico">Frigorífico / Abatedouro</option>
-            <option value="industria">Indústria Alimentícia</option>
-            <option value="usina">Usina / Granel</option>
-            <option value="farmaceutico">Farmacêutico / Cosmético</option>
-            <option value="outro">Outro</option>
+            <option>Frigorífico / Abatedouro</option>
+            <option>Indústria Alimentícia</option>
+            <option>Restaurante / Hotel</option>
+            <option>Supermercado / Padaria</option>
+            <option>Controlador de Pragas / Revendedor</option>
+            <option>Hospital / Farmacêutico</option>
+            <option>Outro</option>
           </select>
         </div>
-
         <div>
-          <label class="block text-white/70 text-sm font-medium mb-2">Como podemos ajudar? <span class="text-white/30">(opcional)</span></label>
-          <textarea rows="3" placeholder="Descreva brevemente sua necessidade ou área a ser protegida..."
-                    class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200 resize-none"></textarea>
+          <label class="block text-white/65 text-sm font-medium mb-2">Mensagem <span class="text-white/25">(opcional)</span></label>
+          <textarea rows="3" placeholder="Descreva brevemente sua necessidade..."
+                    class="w-full bg-white/8 border border-white/12 text-white placeholder-white/25 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-cyan/50 focus:ring-2 focus:ring-cyan/15 transition-all duration-200 resize-none"></textarea>
         </div>
-
         <button type="submit"
-                class="glow-btn w-full bg-electric text-white font-bold py-4 rounded-xl text-base transition-all duration-300 hover:bg-blue-700 flex items-center justify-center gap-2">
+                class="glow-blue w-full bg-electric text-white font-bold py-4 rounded-xl text-base transition-all duration-300 hover:bg-blue-700 flex items-center justify-center gap-2">
           <i data-lucide="send" class="w-5 h-5"></i>
           Solicitar Consultoria Gratuita
         </button>
-
-        <p class="text-center text-white/30 text-xs">
-          Sem spam. Retorno em até 1 dia útil. Seus dados são protegidos pela LGPD.
-        </p>
+        <p class="text-center text-white/25 text-xs">Sem spam. Retorno em até 1 dia útil. Dados protegidos pela LGPD.</p>
       </form>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════════════════════════════
+<!-- ══════════════════════════════════════
      FOOTER
-════════════════════════════════════════ -->
-<footer class="bg-navy border-t border-white/8 py-12 px-6">
-  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-    <div>
-      <span class="text-xl font-black tracking-tight text-white">
-        ultra<span class="gradient-text">light</span>
-      </span>
-      <p class="text-white/35 text-xs mt-1">Armadilhas luminosas UV-A para indústrias.</p>
+══════════════════════════════════════ -->
+<footer class="bg-navy border-t border-white/6 py-14 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-electric flex items-center justify-center">
+            <i data-lucide="zap" class="w-4 h-4 text-white"></i>
+          </div>
+          <span class="text-xl font-black text-white">ultra<span class="grad">light</span></span>
+        </div>
+        <p class="text-white/40 text-sm leading-relaxed max-w-xs mb-5">
+          Líderes na Fabricação e Comercialização de Armadilhas Luminosas para insetos voadores desde 1997.
+        </p>
+        <!-- Social -->
+        <div class="flex items-center gap-3">
+          <a href="#" class="w-9 h-9 rounded-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all duration-200">
+            <i data-lucide="facebook" class="w-4 h-4"></i>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all duration-200">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all duration-200">
+            <i data-lucide="youtube" class="w-4 h-4"></i>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-xl border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white/30 transition-all duration-200">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <p class="text-white/60 text-xs font-bold tracking-widest uppercase mb-4">Navegação</p>
+        <ul class="space-y-2.5">
+          <li><a href="#como-funciona" class="text-white/35 text-sm hover:text-white/70 transition-colors">Como Funciona</a></li>
+          <li><a href="#segmentos"     class="text-white/35 text-sm hover:text-white/70 transition-colors">Segmentos</a></li>
+          <li><a href="#revendedores"  class="text-white/35 text-sm hover:text-white/70 transition-colors">Revendedores</a></li>
+          <li><a href="#blog"          class="text-white/35 text-sm hover:text-white/70 transition-colors">Blog</a></li>
+          <li><a href="#contato"       class="text-white/35 text-sm hover:text-white/70 transition-colors">Contato</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <p class="text-white/60 text-xs font-bold tracking-widest uppercase mb-4">Contato</p>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2 text-white/35 text-sm">
+            <i data-lucide="map-pin" class="w-4 h-4 flex-shrink-0 mt-0.5 text-electric"></i>
+            <span>Rua João Pires de Campos, 141<br/>Jardim Esplanada — Bariri/SP</span>
+          </li>
+          <li>
+            <a href="tel:+551436628580" class="flex items-center gap-2 text-white/35 text-sm hover:text-white/60 transition-colors">
+              <i data-lucide="phone" class="w-4 h-4 text-electric"></i>
+              +55 (14) 3662-8580
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/5514998548580" target="_blank" class="flex items-center gap-2 text-white/35 text-sm hover:text-white/60 transition-colors">
+              <i data-lucide="message-circle" class="w-4 h-4 text-electric"></i>
+              +55 (14) 99854-8580
+            </a>
+          </li>
+          <li>
+            <a href="mailto:vendas@ultralight.com.br" class="flex items-center gap-2 text-white/35 text-sm hover:text-white/60 transition-colors">
+              <i data-lucide="mail" class="w-4 h-4 text-electric"></i>
+              vendas@ultralight.com.br
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="flex flex-wrap gap-6 text-white/40 text-sm">
-      <a href="#beneficios" class="hover:text-white/70 transition-colors">Benefícios</a>
-      <a href="#produtos"   class="hover:text-white/70 transition-colors">Produtos</a>
-      <a href="#segmentos"  class="hover:text-white/70 transition-colors">Segmentos</a>
-      <a href="#normas"     class="hover:text-white/70 transition-colors">Conformidade</a>
-      <a href="#contato"    class="hover:text-white/70 transition-colors">Contato</a>
-    </div>
-    <div class="text-right">
-      <p class="text-white/25 text-xs">&copy; 2026 Ultralight. Todos os direitos reservados.</p>
-      <p class="text-white/20 text-xs mt-1 flex items-center gap-1 justify-end">
-        <i data-lucide="map-pin" class="w-3 h-3"></i>
-        Rua João Pires de Campos, 10 — Jardim Esplanada, Bariri - SP
-      </p>
+
+    <div class="pt-8 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-white/20 text-xs">&copy; 2026 Ultralight. Todos os direitos reservados.</p>
+      <p class="text-white/15 text-xs">ABNT NBR 60335-1:2010 · Boas Práticas de Fabricação · SIF/MAPA</p>
     </div>
   </div>
 </footer>
 
 
-<!-- ═══════════════════════════════════════
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/5514998548580" target="_blank"
+   class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110"
+   style="box-shadow:0 4px 24px rgba(37,211,102,0.45);">
+  <i data-lucide="message-circle" class="w-7 h-7 text-white"></i>
+</a>
+
+
+<!-- ══════════════════════════════════════
      SCRIPTS
-════════════════════════════════════════ -->
+══════════════════════════════════════ -->
 <script>
-  // ── Initialize Lucide icons
   lucide.createIcons();
 
-  // ── Scroll fade-in observer
-  const fadeEls = document.querySelectorAll('.fade-up');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  fadeEls.forEach(el => observer.observe(el));
+  // Fade-up observer
+  const fus = document.querySelectorAll('.fu');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  fus.forEach(el => obs.observe(el));
 
-  // ── Form submit (demo)
+  // Mobile menu
+  function toggleMenu() {
+    const m = document.getElementById('mob-menu');
+    m.classList.toggle('open');
+  }
+
+  // Form submit
   function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button[type=submit]');
-    btn.innerHTML = '<i data-lucide="check-circle" class="w-5 h-5"></i> Solicitação enviada!';
-    btn.classList.remove('bg-electric', 'hover:bg-blue-700');
-    btn.classList.add('bg-green-600');
+    btn.innerHTML = '<i data-lucide="check-circle" class="w-5 h-5"></i> Solicitação enviada! Entraremos em contato em breve.';
+    btn.classList.replace('bg-electric','bg-green-600');
+    btn.classList.remove('hover:bg-blue-700');
     btn.disabled = true;
     lucide.createIcons();
   }

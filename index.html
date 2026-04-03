@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultralight — Proteção UV-A Industrial de Alto Padrão</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+          colors: {
+            navy:    '#0A192F',
+            electric:'#0066FF',
+            cyan:    '#00F0FF',
+            ice:     '#FAFAFA',
+          },
+          backdropBlur: { xs: '2px' },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    /* ── Glow effects ── */
+    .glow-cyan   { box-shadow: 0 0 60px 20px rgba(0,240,255,0.18), 0 0 120px 40px rgba(0,240,255,0.08); }
+    .glow-btn    { box-shadow: 0 0 24px 0 rgba(0,102,255,0.45); }
+    .glow-btn:hover { box-shadow: 0 0 36px 4px rgba(0,102,255,0.65); }
+
+    /* ── Glassmorphism ── */
+    .glass {
+      background: rgba(250,250,250,0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,240,255,0.12);
+    }
+
+    /* ── Gradient text ── */
+    .gradient-text {
+      background: linear-gradient(135deg, #0066FF 0%, #00F0FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Bento cards ── */
+    .bento-card {
+      background: #fff;
+      border: 1px solid rgba(0,102,255,0.10);
+      border-radius: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .bento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,102,255,0.10);
+      border-color: rgba(0,240,255,0.35);
+    }
+
+    /* ── Segment cards ── */
+    .segment-card {
+      background: linear-gradient(145deg, #0d2444 0%, #0A192F 100%);
+      border: 1px solid rgba(0,240,255,0.12);
+      border-radius: 20px;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      overflow: hidden;
+      position: relative;
+    }
+    .segment-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,240,255,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .segment-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 24px 64px rgba(0,240,255,0.15);
+      border-color: rgba(0,240,255,0.40);
+    }
+    .segment-card:hover::before { opacity: 1; }
+
+    /* ── Social proof logos ── */
+    .logo-track {
+      display: flex;
+      gap: 3rem;
+      animation: slide 22s linear infinite;
+      width: max-content;
+    }
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Input focus ── */
+    .form-input:focus {
+      outline: none;
+      border-color: #00F0FF;
+      box-shadow: 0 0 0 3px rgba(0,240,255,0.15);
+    }
+
+    /* ── Scroll fade-in ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Cyan line accent ── */
+    .cyan-line::after {
+      content: '';
+      display: block;
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, #0066FF, #00F0FF);
+      border-radius: 99px;
+      margin-top: 12px;
+    }
+
+    /* ── UV placeholder illustration ── */
+    .uv-plate {
+      background: radial-gradient(ellipse at center, rgba(0,240,255,0.22) 0%, rgba(0,102,255,0.10) 45%, transparent 75%);
+      border-radius: 24px;
+      border: 1px solid rgba(0,240,255,0.20);
+      position: relative;
+    }
+    .uv-plate .inner {
+      background: linear-gradient(145deg, #0d2444, #091628);
+      border-radius: 18px;
+      border: 1px solid rgba(0,240,255,0.25);
+    }
+    .uv-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #00F0FF;
+      box-shadow: 0 0 12px 4px rgba(0,240,255,0.7);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.4); opacity: 0.6; }
+    }
+    .uv-bar {
+      height: 4px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #0066FF, #00F0FF);
+      box-shadow: 0 0 10px rgba(0,240,255,0.6);
+      animation: bar-glow 3s ease-in-out infinite alternate;
+    }
+    @keyframes bar-glow {
+      0%   { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+    .uv-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+  </style>
+</head>
+
+<body class="bg-ice text-navy antialiased">
+
+<!-- ═══════════════════════════════════════
+     HEADER — Glassmorphism fixo
+════════════════════════════════════════ -->
+<header class="glass fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2 flex-shrink-0">
+      <span class="text-xl font-black tracking-tight">
+        ultra<span class="gradient-text">light</span>
+      </span>
+      <span class="hidden sm:inline-block text-[10px] font-semibold text-electric uppercase tracking-widest border border-electric/30 rounded px-1.5 py-0.5">UV-A</span>
+    </div>
+
+    <!-- Nav -->
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-navy/70">
+      <a href="#beneficios"  class="hover:text-electric transition-colors duration-200">Benefícios</a>
+      <a href="#segmentos"   class="hover:text-electric transition-colors duration-200">Segmentos</a>
+      <a href="#normas"      class="hover:text-electric transition-colors duration-200">Conformidade</a>
+      <a href="#contato"     class="hover:text-electric transition-colors duration-200">Contato</a>
+    </nav>
+
+    <!-- CTA -->
+    <a href="#contato"
+       class="glow-btn flex-shrink-0 bg-electric text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all duration-300 hover:bg-blue-700 whitespace-nowrap">
+      Falar com Consultor
+    </a>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="relative pt-32 pb-24 px-6 overflow-hidden">
+
+  <!-- Background decoration -->
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-electric/5 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan/5 blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+    <!-- Left: Copy -->
+    <div class="fade-up">
+      <div class="inline-flex items-center gap-2 bg-electric/8 border border-electric/20 text-electric text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
+        Tecnologia UV-A · Norma ABNT NBR 14165
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight mb-6">
+        Proteção de<br/>
+        <span class="gradient-text">Alto Padrão</span><br/>
+        contra Insetos<br/>Voadores.
+      </h1>
+
+      <p class="text-lg text-navy/60 leading-relaxed mb-8 max-w-md">
+        Armadilhas luminosas UV-A para indústrias, frigoríficos e usinas. Conformidade total com normas sanitárias e ABNT — sem comprometer a produção.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#contato"
+           class="glow-btn bg-electric text-white font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:bg-blue-700 flex items-center gap-2">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          Solicitar Proposta
+        </a>
+        <a href="#beneficios"
+           class="border border-navy/15 text-navy font-semibold px-7 py-3.5 rounded-xl transition-all duration-300 hover:border-electric hover:text-electric flex items-center gap-2">
+          <i data-lucide="play-circle" class="w-4 h-4"></i>
+          Ver Benefícios
+        </a>
+      </div>
+
+      <!-- Stats row -->
+      <div class="mt-12 flex flex-wrap gap-8 pt-8 border-t border-navy/8">
+        <div>
+          <div class="text-3xl font-black gradient-text">+500</div>
+          <div class="text-xs font-medium text-navy/50 mt-1">Unidades Instaladas</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black gradient-text">15+</div>
+          <div class="text-xs font-medium text-navy/50 mt-1">Anos de Mercado</div>
+        </div>
+        <div>
+          <div class="text-3xl font-black gradient-text">99%</div>
+          <div class="text-xs font-medium text-navy/50 mt-1">Eficiência Captura</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Product visual placeholder -->
+    <div class="fade-up flex justify-center">
+      <div class="uv-plate glow-cyan w-full max-w-md aspect-square p-6 flex flex-col items-center justify-center gap-5">
+
+        <div class="inner w-full flex-1 flex flex-col items-center justify-center gap-6 p-6">
+          <!-- UV dots grid -->
+          <div class="uv-grid w-full max-w-xs">
+            <div class="uv-dot" style="animation-delay:0s"></div>
+            <div class="uv-dot" style="animation-delay:0.2s"></div>
+            <div class="uv-dot" style="animation-delay:0.4s"></div>
+            <div class="uv-dot" style="animation-delay:0.6s"></div>
+            <div class="uv-dot" style="animation-delay:0.8s"></div>
+            <div class="uv-dot" style="animation-delay:0.3s"></div>
+            <div class="uv-dot" style="animation-delay:0.5s"></div>
+            <div class="uv-dot" style="animation-delay:0.7s"></div>
+            <div class="uv-dot" style="animation-delay:0.9s"></div>
+            <div class="uv-dot" style="animation-delay:1.1s"></div>
+            <div class="uv-dot" style="animation-delay:0.1s"></div>
+            <div class="uv-dot" style="animation-delay:0.4s"></div>
+            <div class="uv-dot" style="animation-delay:0.6s"></div>
+            <div class="uv-dot" style="animation-delay:0.8s"></div>
+            <div class="uv-dot" style="animation-delay:1.0s"></div>
+          </div>
+
+          <!-- UV bars -->
+          <div class="flex flex-col gap-2 w-full max-w-xs">
+            <div class="uv-bar w-full" style="animation-delay:0s"></div>
+            <div class="uv-bar w-3/4" style="animation-delay:0.5s"></div>
+            <div class="uv-bar w-full" style="animation-delay:1s"></div>
+            <div class="uv-bar w-2/3" style="animation-delay:0.25s"></div>
+          </div>
+
+          <p class="text-cyan/60 text-xs font-mono tracking-widest text-center">UV-A · 368nm · ULTRALIGHT PRO</p>
+        </div>
+
+        <div class="flex gap-3 items-center">
+          <div class="flex items-center gap-1.5 text-cyan text-xs font-semibold">
+            <i data-lucide="zap" class="w-3.5 h-3.5"></i> Ativo
+          </div>
+          <div class="w-1 h-1 rounded-full bg-cyan/40"></div>
+          <div class="text-cyan/50 text-xs font-mono">PROTEÇÃO 24/7</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SOCIAL PROOF — Barra de logos
+════════════════════════════════════════ -->
+<section class="py-12 border-y border-navy/6 overflow-hidden bg-white">
+  <p class="text-center text-xs font-semibold tracking-widest text-navy/35 uppercase mb-8">Confiado por líderes da indústria</p>
+  <div class="relative overflow-hidden">
+    <div class="logo-track">
+      <!-- First set -->
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">JBS</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Marfrig</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">BRF</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Seara</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Ambev</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Cargill</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Tyson Foods</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Minerva Foods</span>
+      <!-- Duplicate for infinite loop -->
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">JBS</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Marfrig</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">BRF</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Seara</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Ambev</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Cargill</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Tyson Foods</span>
+      <span class="text-navy/25 font-black text-lg tracking-tight whitespace-nowrap">Minerva Foods</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     BENTO GRID — Benefícios
+════════════════════════════════════════ -->
+<section id="beneficios" class="py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="mb-14 fade-up">
+      <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Por que Ultralight?</p>
+      <h2 class="text-3xl sm:text-4xl font-black cyan-line">Engenharia pensada<br/>para ambientes críticos.</h2>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-auto">
+
+      <!-- Card 1 — Large (spans 2 cols) -->
+      <div class="bento-card p-8 lg:col-span-2 fade-up">
+        <div class="w-12 h-12 rounded-2xl bg-electric/10 flex items-center justify-center mb-5">
+          <i data-lucide="zap" class="w-6 h-6 text-electric"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Alta Eficiência UV-A</h3>
+        <p class="text-navy/55 leading-relaxed mb-6">Lâmpadas UV-A de 368nm com alta irradiância que atraem e eliminam insetos voadores com eficiência superior a 99% — sem pesticidas, sem risco químico para o produto ou operador.</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="text-xs font-semibold bg-electric/8 text-electric border border-electric/15 px-3 py-1.5 rounded-full">368nm UV-A</span>
+          <span class="text-xs font-semibold bg-cyan/8 text-cyan border border-cyan/20 px-3 py-1.5 rounded-full" style="color:#00b5c4;">Zero Pesticidas</span>
+          <span class="text-xs font-semibold bg-navy/5 text-navy/60 border border-navy/10 px-3 py-1.5 rounded-full">Operação 24/7</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bento-card p-8 fade-up" style="transition-delay:0.1s">
+        <div class="w-12 h-12 rounded-2xl bg-cyan/10 flex items-center justify-center mb-5">
+          <i data-lucide="shield-check" class="w-6 h-6" style="color:#00b5c4;"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Conformidade ABNT</h3>
+        <p class="text-navy/55 leading-relaxed">100% conforme a ABNT NBR 14165 e exigências de auditorias FSSC 22000, IFS Food e SIF/MAPA.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bento-card p-8 fade-up" style="transition-delay:0.15s">
+        <div class="w-12 h-12 rounded-2xl bg-green-500/10 flex items-center justify-center mb-5">
+          <i data-lucide="settings-2" class="w-6 h-6 text-green-500"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Versatilidade de Modelos</h3>
+        <p class="text-navy/55 leading-relaxed">Da linha de parede compacta ao modelo de teto industrial de alta potência — uma solução para cada planta e cobertura de área.</p>
+      </div>
+
+      <!-- Card 4 — Tall accent -->
+      <div class="bento-card p-8 bg-gradient-to-br from-electric/5 to-cyan/5 fade-up" style="transition-delay:0.2s">
+        <div class="w-12 h-12 rounded-2xl bg-electric flex items-center justify-center mb-5">
+          <i data-lucide="lock" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="text-xl font-bold mb-3">Segurança Total</h3>
+        <p class="text-navy/55 leading-relaxed">Gabinete em aço inox ou policarbonato resistente a umidade, jatos d'água e agentes sanitizantes. IP65 disponível.</p>
+        <div class="mt-6 flex items-center gap-2 text-electric text-sm font-semibold">
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          Saiba mais
+        </div>
+      </div>
+
+      <!-- Card 5 — Wide -->
+      <div class="bento-card p-8 sm:col-span-2 fade-up" style="transition-delay:0.25s">
+        <div class="flex flex-col sm:flex-row gap-8">
+          <div class="flex-1">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-5">
+              <i data-lucide="bar-chart-3" class="w-6 h-6 text-purple-500"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Monitoramento Inteligente</h3>
+            <p class="text-navy/55 leading-relaxed">Relatórios periódicos de captura para laudos de controle integrado de pragas (PCIP) — documentação pronta para auditorias.</p>
+          </div>
+          <div class="flex-1">
+            <div class="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-5">
+              <i data-lucide="wrench" class="w-6 h-6 text-orange-500"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Manutenção Simplificada</h3>
+            <p class="text-navy/55 leading-relaxed">Projeto modular com troca rápida de lâmpadas e bandejas coletoras — mínimo downtime, máxima disponibilidade.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SEGMENTOS ATENDIDOS
+════════════════════════════════════════ -->
+<section id="segmentos" class="py-24 px-6 bg-navy relative overflow-hidden">
+
+  <!-- Background decoration -->
+  <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-electric/8 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan/5 blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    <div class="mb-14 fade-up">
+      <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-3" style="color:#00F0FF;">Segmentos</p>
+      <h2 class="text-3xl sm:text-4xl font-black text-white">Soluções para<br/>quem não pode errar.</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Frigoríficos -->
+      <div class="segment-card p-8 fade-up" style="transition-delay:0s">
+        <div class="w-14 h-14 rounded-2xl border border-cyan/20 flex items-center justify-center mb-6 bg-white/5">
+          <i data-lucide="snowflake" class="w-7 h-7 text-cyan" style="color:#00F0FF;"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Frigoríficos</h3>
+        <p class="text-white/50 leading-relaxed text-sm mb-6">
+          Ambientes de abate e processamento de carnes exigem controle rigoroso. Nossos modelos IP65 resistem a limpezas com jatos d'água e sanitizantes sem perda de desempenho.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            Carcaça inox grau alimentício
+          </li>
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            Aprovado SIF / MAPA
+          </li>
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            Alta umidade até 95% RH
+          </li>
+        </ul>
+      </div>
+
+      <!-- Indústrias Alimentícias -->
+      <div class="segment-card p-8 fade-up" style="transition-delay:0.1s">
+        <div class="w-14 h-14 rounded-2xl border border-electric/25 flex items-center justify-center mb-6 bg-white/5">
+          <i data-lucide="factory" class="w-7 h-7 text-electric"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Indústrias</h3>
+        <p class="text-white/50 leading-relaxed text-sm mb-6">
+          De alimentos a farmacêuticos — proteja linhas de produção e armazéns contra contaminação por insetos voadores com cobertura de área de até 80m².
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            Cobertura até 80m² por unidade
+          </li>
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            FSSC 22000 / IFS Food
+          </li>
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            Modelos para teto e parede
+          </li>
+        </ul>
+      </div>
+
+      <!-- Usinas & Granéis -->
+      <div class="segment-card p-8 fade-up" style="transition-delay:0.2s">
+        <div class="w-14 h-14 rounded-2xl border border-cyan/20 flex items-center justify-center mb-6 bg-white/5">
+          <i data-lucide="wheat" class="w-7 h-7" style="color:#00F0FF;"></i>
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Usinas & Granéis</h3>
+        <p class="text-white/50 leading-relaxed text-sm mb-6">
+          Armazéns de grãos, açúcar e ração animal são focos naturais de infestação. Projetos com alta densidade de lâmpadas garantem controle efetivo em grandes volumes.
+        </p>
+        <ul class="space-y-2">
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            Projeto sob medida para planta
+          </li>
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            Laudo técnico incluso
+          </li>
+          <li class="flex items-center gap-2 text-white/60 text-sm">
+            <i data-lucide="check" class="w-4 h-4 text-electric flex-shrink-0"></i>
+            Alta pressão de captura
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CONFORMIDADE — Normas
+════════════════════════════════════════ -->
+<section id="normas" class="py-24 px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: Copy -->
+      <div class="fade-up">
+        <p class="text-electric text-sm font-semibold tracking-widest uppercase mb-3">Conformidade</p>
+        <h2 class="text-3xl sm:text-4xl font-black mb-6 cyan-line">Passe em qualquer<br/>auditoria com confiança.</h2>
+        <p class="text-navy/60 leading-relaxed mb-8">
+          Nossas armadilhas são projetadas para atender integralmente às exigências de órgãos reguladores brasileiros e internacionais. A documentação técnica vem com cada equipamento.
+        </p>
+        <div class="space-y-4">
+          <div class="flex items-start gap-4 p-5 rounded-2xl border border-navy/8 hover:border-electric/20 transition-colors duration-300">
+            <div class="w-10 h-10 rounded-xl bg-electric/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="file-check" class="w-5 h-5 text-electric"></i>
+            </div>
+            <div>
+              <div class="font-bold text-sm mb-1">ABNT NBR 14165</div>
+              <div class="text-navy/55 text-sm">Norma brasileira para armadilhas luminosas — atendida em 100% dos modelos Ultralight.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-5 rounded-2xl border border-navy/8 hover:border-electric/20 transition-colors duration-300">
+            <div class="w-10 h-10 rounded-xl bg-electric/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="award" class="w-5 h-5 text-electric"></i>
+            </div>
+            <div>
+              <div class="font-bold text-sm mb-1">FSSC 22000 / IFS Food</div>
+              <div class="text-navy/55 text-sm">Documentação e laudos compatíveis com as principais certificações de segurança alimentar.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-5 rounded-2xl border border-navy/8 hover:border-electric/20 transition-colors duration-300">
+            <div class="w-10 h-10 rounded-xl bg-electric/10 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="clipboard-list" class="w-5 h-5 text-electric"></i>
+            </div>
+            <div>
+              <div class="font-bold text-sm mb-1">SIF / MAPA</div>
+              <div class="text-navy/55 text-sm">Aprovado para uso em estabelecimentos registrados no Ministério da Agricultura.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Visual stats -->
+      <div class="fade-up grid grid-cols-2 gap-5">
+        <div class="bento-card p-7 flex flex-col items-start gap-3">
+          <i data-lucide="target" class="w-8 h-8 text-electric"></i>
+          <div class="text-4xl font-black gradient-text">99%</div>
+          <div class="text-sm text-navy/55 font-medium">Eficiência de captura documentada</div>
+        </div>
+        <div class="bento-card p-7 flex flex-col items-start gap-3 mt-8">
+          <i data-lucide="clock" class="w-8 h-8" style="color:#00b5c4;"></i>
+          <div class="text-4xl font-black gradient-text">24/7</div>
+          <div class="text-sm text-navy/55 font-medium">Proteção contínua sem paradas</div>
+        </div>
+        <div class="bento-card p-7 flex flex-col items-start gap-3">
+          <i data-lucide="leaf" class="w-8 h-8 text-green-500"></i>
+          <div class="text-4xl font-black gradient-text">0</div>
+          <div class="text-sm text-navy/55 font-medium">Pesticidas ou resíduos químicos</div>
+        </div>
+        <div class="bento-card p-7 flex flex-col items-start gap-3 mt-8">
+          <i data-lucide="shield" class="w-8 h-8 text-purple-500"></i>
+          <div class="text-4xl font-black gradient-text">IP65</div>
+          <div class="text-sm text-navy/55 font-medium">Proteção contra jatos d'água</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CTA FINAL + FORMULÁRIO
+════════════════════════════════════════ -->
+<section id="contato" class="py-24 px-6 bg-navy relative overflow-hidden">
+
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-electric/10 blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-cyan/8 blur-3xl"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+
+    <div class="text-center mb-14 fade-up">
+      <p class="text-cyan text-sm font-semibold tracking-widest uppercase mb-4" style="color:#00F0FF;">Próximo passo</p>
+      <h2 class="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
+        Pronto para <span class="gradient-text">blindar</span><br/>sua indústria?
+      </h2>
+      <p class="text-white/50 text-lg max-w-xl mx-auto">
+        Fale com um consultor especialista e receba um projeto técnico personalizado para sua planta — sem custo e sem compromisso.
+      </p>
+    </div>
+
+    <!-- Form card -->
+    <div class="fade-up bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-8 sm:p-10">
+      <form class="space-y-5" onsubmit="handleSubmit(event)">
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-white/70 text-sm font-medium mb-2">Nome completo</label>
+            <input type="text" placeholder="João Silva"
+                   class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+          </div>
+          <div>
+            <label class="block text-white/70 text-sm font-medium mb-2">Empresa</label>
+            <input type="text" placeholder="Sua Indústria Ltda."
+                   class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-white/70 text-sm font-medium mb-2">E-mail corporativo</label>
+            <input type="email" placeholder="joao@empresa.com.br"
+                   class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+          </div>
+          <div>
+            <label class="block text-white/70 text-sm font-medium mb-2">Telefone / WhatsApp</label>
+            <input type="tel" placeholder="(11) 99999-9999"
+                   class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-white/70 text-sm font-medium mb-2">Segmento</label>
+          <select class="form-input w-full bg-white/8 border border-white/15 text-white/70 rounded-xl px-4 py-3 text-sm transition-all duration-200 appearance-none"
+                  style="background-color: rgba(10,25,47,0.8);">
+            <option value="" disabled selected>Selecione seu segmento</option>
+            <option value="frigorifico">Frigorífico / Abatedouro</option>
+            <option value="industria">Indústria Alimentícia</option>
+            <option value="usina">Usina / Granel</option>
+            <option value="farmaceutico">Farmacêutico / Cosmético</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-white/70 text-sm font-medium mb-2">Como podemos ajudar? <span class="text-white/30">(opcional)</span></label>
+          <textarea rows="3" placeholder="Descreva brevemente sua necessidade ou área a ser protegida..."
+                    class="form-input w-full bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl px-4 py-3 text-sm transition-all duration-200 resize-none"></textarea>
+        </div>
+
+        <button type="submit"
+                class="glow-btn w-full bg-electric text-white font-bold py-4 rounded-xl text-base transition-all duration-300 hover:bg-blue-700 flex items-center justify-center gap-2">
+          <i data-lucide="send" class="w-5 h-5"></i>
+          Solicitar Consultoria Gratuita
+        </button>
+
+        <p class="text-center text-white/30 text-xs">
+          Sem spam. Retorno em até 1 dia útil. Seus dados são protegidos pela LGPD.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="bg-navy border-t border-white/8 py-12 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div>
+      <span class="text-xl font-black tracking-tight text-white">
+        ultra<span class="gradient-text">light</span>
+      </span>
+      <p class="text-white/35 text-xs mt-1">Armadilhas luminosas UV-A para indústrias.</p>
+    </div>
+    <div class="flex flex-wrap gap-6 text-white/40 text-sm">
+      <a href="#beneficios" class="hover:text-white/70 transition-colors">Benefícios</a>
+      <a href="#segmentos"  class="hover:text-white/70 transition-colors">Segmentos</a>
+      <a href="#normas"     class="hover:text-white/70 transition-colors">Conformidade</a>
+      <a href="#contato"    class="hover:text-white/70 transition-colors">Contato</a>
+    </div>
+    <p class="text-white/25 text-xs">&copy; 2026 Ultralight. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════ -->
+<script>
+  // ── Initialize Lucide icons
+  lucide.createIcons();
+
+  // ── Scroll fade-in observer
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ── Form submit (demo)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.innerHTML = '<i data-lucide="check-circle" class="w-5 h-5"></i> Solicitação enviada!';
+    btn.classList.remove('bg-electric', 'hover:bg-blue-700');
+    btn.classList.add('bg-green-600');
+    btn.disabled = true;
+    lucide.createIcons();
+  }
+</script>
+
+</body>
+</html>
